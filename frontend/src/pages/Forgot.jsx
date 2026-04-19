@@ -3,22 +3,17 @@ import { useState } from "react";
 
 export default function Forgot() {
 
-  // email state
   const [email, setEmail] = useState("");
 
-  // loading + messages
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // handle submit
   const handleSubmit = async () => {
 
-    // reset messages
     setError("");
     setSuccess("");
 
-    // validation
     if (!email) {
       setError("Please enter email");
       return;
@@ -29,10 +24,8 @@ export default function Forgot() {
     try {
       await api.post("/auth/forgot-password", { email });
 
-      // success message
       setSuccess("Reset link sent ");
 
-      // redirect
       setTimeout(() => {
         window.location.href = "/reset";
       }, 1000);
@@ -45,28 +38,30 @@ export default function Forgot() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800">
 
-      <div className="bg-white p-6 rounded shadow w-80">
+      <div className="bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-xl w-80 border border-slate-700">
 
-        <h2 className="text-xl mb-4 text-center">Forgot Password</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center text-white">
+          Forgot Password 
+        </h2>
 
         {/* SUCCESS BOX */}
         {success && (
-          <div className="bg-green-100 text-green-700 p-2 rounded mb-2 text-center">
+          <div className="bg-green-500/20 text-green-400 p-2 rounded mb-2 text-center border border-green-500/30">
             {success}
           </div>
         )}
 
         {/* ERROR BOX */}
         {error && (
-          <div className="bg-red-100 text-red-700 p-2 rounded mb-2 text-center">
+          <div className="bg-red-500/20 text-red-400 p-2 rounded mb-2 text-center border border-red-500/30">
             {error}
           </div>
         )}
 
         <input
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded-lg bg-slate-800 text-white border-slate-600 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -75,11 +70,13 @@ export default function Forgot() {
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className={`w-full py-2 rounded text-white ${
-            loading ? "bg-gray-400" : "bg-blue-500"
+          className={`w-full py-2 rounded-lg font-semibold transition text-white ${
+            loading
+              ? "bg-slate-600 cursor-not-allowed"
+              : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90"
           }`}
         >
-          {loading ? "Sending..." : "Submit"}
+          {loading ? "Sending..." : "Send Reset Link"}
         </button>
 
       </div>

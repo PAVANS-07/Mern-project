@@ -1,0 +1,20 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol",
+                "enableSsl": "Disabled"
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33070,
+            "driver": "MySQL",
+            "name": "mern",
+            "database": " mern_auth_db",
+            "username": "pavan",
+            "connectionTimeout": 60,
+            "password": "root123"
+        }
+    ]
+}

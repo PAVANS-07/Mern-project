@@ -50,28 +50,30 @@ export default function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800">
 
-      <div className="bg-white p-6 rounded shadow w-80">
+      <div className="bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-xl w-80 border border-slate-700">
 
-        <h2 className="text-xl font-bold mb-4 text-center">Register</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center text-white">
+          Create Account 
+        </h2>
 
         <input
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded-lg bg-slate-800 text-white border-slate-600 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Name"
           value={data.name}
           onChange={(e) => setData({ ...data, name: e.target.value })}
         />
 
         <input
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded-lg bg-slate-800 text-white border-slate-600 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Email"
           value={data.email}
           onChange={(e) => setData({ ...data, email: e.target.value })}
         />
 
         <input
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded-lg bg-slate-800 text-white border-slate-600 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Phone"
           value={data.phone}
           onChange={(e) => setData({ ...data, phone: e.target.value })}
@@ -79,7 +81,7 @@ export default function Register() {
 
         <input
           type="password"
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded-lg bg-slate-800 text-white border-slate-600 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Password"
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
@@ -87,7 +89,7 @@ export default function Register() {
 
         <input
           type="password"
-          className="w-full border p-2 mb-3 rounded"
+          className="w-full border p-2 mb-3 rounded-lg bg-slate-800 text-white border-slate-600 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           placeholder="Confirm Password"
           value={data.confirmPassword}
           onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
@@ -96,14 +98,18 @@ export default function Register() {
         <button
           onClick={register}
           disabled={loading}
-          className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 disabled:bg-gray-400"
+          className={`w-full py-2 rounded-lg font-semibold transition text-white ${
+            loading
+              ? "bg-slate-600 cursor-not-allowed"
+              : "bg-gradient-to-r from-emerald-500 to-teal-500 hover:opacity-90"
+          }`}
         >
           {loading ? "Registering..." : "Register"}
         </button>
 
-        <p className="text-center mt-3">
+        <p className="text-center mt-4 text-slate-400">
           Already have an account?{" "}
-          <a href="/" className="text-blue-500">
+          <a href="/" className="text-indigo-400 hover:text-indigo-300">
             Login
           </a>
         </p>

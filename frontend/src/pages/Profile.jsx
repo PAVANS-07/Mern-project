@@ -5,14 +5,12 @@ export default function Profile() {
 
   const navigate = useNavigate();
 
-  // dark mode from localStorage
   const dark = localStorage.getItem("dark") === "true";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(null);
 
-  // load saved profile
   useEffect(() => {
     const email = localStorage.getItem("userEmail");
     const profileKey = `profile_${email}`;
@@ -26,7 +24,6 @@ export default function Profile() {
     }
   }, []);
 
-  // update profile
   const handleUpdate = () => {
     if (!name || !email) {
       alert("Please fill all fields");
@@ -37,19 +34,13 @@ export default function Profile() {
     const emailKey = localStorage.getItem("userEmail");
     const profileKey = `profile_${emailKey}`;
 
-    
-       
-
     localStorage.setItem(profileKey, JSON.stringify(userData));
 
     alert("Profile updated Successfully");
 
-    // redirect to dashboard
     window.location.href = "/dashboard";
-    //navigate("/dashboard");
   };
 
-  // image upload
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -59,30 +50,32 @@ export default function Profile() {
 
   return (
     <div
-      className={
+      className={`min-h-screen flex justify-center items-center transition-all duration-300 ${
         dark
-          ? "min-h-screen flex justify-center items-center bg-gray-950 text-white"
-          : "min-h-screen flex justify-center items-center bg-gray-100"
-      }
+          ? "bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-slate-100"
+          : "bg-gradient-to-br from-slate-100 via-indigo-100 to-white text-slate-900"
+      }`}
     >
 
       {/* PROFILE CARD */}
       <div
-        className={
+        className={`p-6 rounded-2xl shadow-xl w-80 text-center backdrop-blur-md border ${
           dark
-            ? "bg-gray-800 border border-gray-700 p-6 rounded-lg shadow w-80 text-center"
-            : "bg-white p-6 rounded-lg shadow w-80 text-center"
-        }
+            ? "bg-slate-900/80 border-slate-700"
+            : "bg-white/80 border-slate-200"
+        }`}
       >
 
-        <h2 className="text-xl font-bold mb-4">Profile</h2>
+        <h2 className="text-2xl font-bold mb-4">
+          Profile 
+        </h2>
 
         {/* IMAGE */}
         {image && (
           <img
             src={image}
             alt="profile"
-            className="w-24 h-24 rounded-full mx-auto mb-3 object-cover border"
+            className="w-24 h-24 rounded-full mx-auto mb-3 object-cover border-2 border-indigo-500 shadow"
           />
         )}
 
@@ -90,7 +83,7 @@ export default function Profile() {
         <input
           type="file"
           onChange={handleImage}
-          className="mb-3"
+          className="mb-3 text-sm text-slate-400"
         />
 
         {/* NAME */}
@@ -98,11 +91,11 @@ export default function Profile() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Name"
-          className={
+          className={`w-full p-2 mb-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
             dark
-              ? "w-full bg-gray-700 text-white border border-gray-600 p-2 mb-3 rounded"
-              : "w-full border p-2 mb-3 rounded"
-          }
+              ? "bg-slate-800 text-white border-slate-600 placeholder-slate-400"
+              : "bg-white text-slate-900 border-slate-300 placeholder-slate-400"
+          }`}
         />
 
         {/* EMAIL */}
@@ -110,21 +103,17 @@ export default function Profile() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
-          className={
+          className={`w-full p-2 mb-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
             dark
-              ? "w-full bg-gray-700 text-white border border-gray-600 p-2 mb-3 rounded"
-              : "w-full border p-2 mb-3 rounded"
-          }
+              ? "bg-slate-800 text-white border-slate-600 placeholder-slate-400"
+              : "bg-white text-slate-900 border-slate-300 placeholder-slate-400"
+          }`}
         />
 
         {/* BUTTON */}
         <button
           onClick={handleUpdate}
-          className={
-            dark
-              ? "w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
-              : "w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
-          }
+          className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90 text-white py-2 rounded-lg font-semibold transition"
         >
           Update Profile
         </button>
